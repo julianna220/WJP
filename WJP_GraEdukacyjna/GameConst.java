@@ -43,7 +43,7 @@ public class GameConst {
     
     //ladowanie zasobow gry
     public static void loadInitialImages(){
-        bgImage = loadImage("Images/objazdówka_szwajcaria_ogromne_piękno_w_miniaturze_zurych_chur_st._moritz_bernina_express_tirano_funclub-2-2.jpg");
+        bgImage = loadImage("Images/bialetlo.jpg");
         menuImage=loadImage("");
         cursorImage=loadImage("Images/Flag_of_Switzerland_within_2to3.png");
     }

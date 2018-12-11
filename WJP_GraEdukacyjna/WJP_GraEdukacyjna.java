@@ -17,7 +17,7 @@ public class WJP_GraEdukacyjna {
        
         //Ustalenie rozmiaru gry
         int gameWidth = 1024;
-        int gameHeight = 768;
+        int gameHeight = 700;
         
         //Pobieranie rozmiaru gry
         int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;

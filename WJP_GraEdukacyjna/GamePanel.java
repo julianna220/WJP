@@ -13,6 +13,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 
 
@@ -35,7 +38,12 @@ public class GamePanel extends JPanel{
     //czcionki stosowane w polu gry jako alert
     public Font alertFont;
     
-     
+    private GameMap m;
+    private GamePlayer p;
+    
+
+    
+    
     public GamePanel(int width, int height){
          gStatus=new GameStatus();
          gStatus.reset();
@@ -46,9 +54,18 @@ public class GamePanel extends JPanel{
         this.sHeight=height;
         barHeight=50;
         
+        
         //c=Color.YELLOW;
         //x=512;
         //y=380;
+        
+        
+        m = new GameMap();
+        p = new GamePlayer();
+        addKeyListener(new GamePanel.Al());
+        setFocusable(true);
+
+        
         
         // dodanie obslugi zdarzenia wciśnięcia mmyszki
         addMouseListener (new MouseAdapter(){
@@ -96,6 +113,62 @@ public class GamePanel extends JPanel{
     }
         }
               }}});}
+            public void actionPerformed(ActionEvent e) {
+        repaint();
+    };
+        
+        
+        public void paint (Graphics g) {
+        super.paint(g);
+       
+        
+        for (int y = 0; y<14; y++){
+            for(int x=0; x<14; x++){
+                
+                if(m.getMap(x, y).equals("g")){
+                    g.drawImage(m.getGrass(), (90+x*32), (130+y*32) ,null);}
+                
+                if(m.getMap(x, y).equals("w")){
+                    g.drawImage(m.getWall(), (90+x*32), (130+y*32) ,null);}
+            }}
+            
+    g.drawImage(p.getPlayer(),p.getTileX()*32, p.getTileY()*32, null);
+    g.drawImage(m.getMapaszw(),700,70, null);
+    g.drawImage(m.getMapaszw2(),650,300, null);
+}
+            
+            
+            
+public class Al extends KeyAdapter{
+    public void keyPressed(KeyEvent e){
+        int keycode = e.getKeyCode();
+        
+        if(keycode == KeyEvent.VK_UP){
+            if(!m.getMap(p.getTileX(),p.getTileY()-1 ).equals("w")){
+                p.move(0, -1);
+        }
+        } 
+        if(keycode == KeyEvent.VK_DOWN){
+            if(!m.getMap(p.getTileX(),p.getTileY()+1 ).equals("w")){
+                p.move(0, 1);
+        }
+        }
+        if(keycode == KeyEvent.VK_LEFT){
+            if(!m.getMap(p.getTileX()-1,p.getTileY()).equals("w")){
+                p.move(-1, 0);
+        }
+        }
+        if(keycode == KeyEvent.VK_RIGHT){
+            if(!m.getMap(p.getTileX()+1,p.getTileY()).equals("w")) {
+                p.move(1, 0);
+        }
+}}
+    public void keyRelased (KeyEvent e){
+    }
+    
+    public void keyTyped (KeyEvent e){
+    }
+}
     
     protected void paintComponent(Graphics gs){
         Graphics2D g=(Graphics2D)gs;
@@ -161,9 +234,6 @@ public class GamePanel extends JPanel{
     }//
     
     
-    
-    
-    
-    }
+}
     
 
