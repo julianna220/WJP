@@ -5,6 +5,8 @@
  */
 package WJP_GraEdukacyjna;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.File;
 import java.util.*;
@@ -17,30 +19,30 @@ import javax.swing.ImageIcon;
 public class GameMap {
     
     private Scanner m;
-    private String Map[] = new String[14];
+    private String Map[] = new String[19];
+
     
     private Image grass,
                   wall,
                   mapaszw,
-                  mapaszw2;
+                  mapaszw2,
+                  meta;
     
     public GameMap(){
         
-        ImageIcon img = new ImageIcon("C://Users//Lucek//Documents//NetBeansProjects//Maze//grass.png");
+        ImageIcon img = new ImageIcon("Images//grass.png");
         grass = img.getImage();
-        ImageIcon img2 = new ImageIcon("C://Users//Lucek//Documents//NetBeansProjects//Maze//wall.png");
+        
+        ImageIcon img2 = new ImageIcon("Images//wall.png");
         wall = img2.getImage();
         
-        ImageIcon img3 = new ImageIcon("Images//mapa_szw.png");
-        mapaszw = img3.getImage();
-        
-        ImageIcon img4 = new ImageIcon("Images//mapa_szw2.png");
-        mapaszw2 = img4.getImage();
-        
-        openFile();
+        ImageIcon img5 = new ImageIcon("Images//meta.png");
+        meta = img5.getImage();
+      
+        openFile(GameConst.MoveMODE);
         readFile();
         closeFile();
-    
+        
     }
     
     public Image getGrass(){
@@ -51,37 +53,47 @@ public class GameMap {
         return wall;
     }
      
-     public Image getMapaszw(){
-        return mapaszw;
-    }
     
-    public Image getMapaszw2(){
-        return mapaszw2;
+    public Image getMeta(){
+        return meta;
     }
      
-    public String getMap(int x, int y){
-        String index = Map[y].substring(x,x+1);
-        return index;
-}
-
     
-    public void openFile(){
-    
+    public void openFile(int poziom){
         try{
-        m = new Scanner (new File("C://Users//Lucek//Documents//NetBeansProjects//Maze//Map.txt"));
-        }catch(Exception e){
-            System.out.println("error loading map");
+            switch (GameConst.MoveMODE) {
+                case 1:
+                    m=new Scanner (new File("Maze/Map.txt"));
+                    break;
+                case 2:
+                    m=new Scanner (new File("Maze/Map2.txt"));
+                    break;
+                case 3:
+                    m=new Scanner (new File("Maze/Map3.txt"));
+                    break;
+            }
         }
-        
+    catch(Exception e){
+            System.out.println("Błąd");
+        }    
     }
     
     public void readFile(){
     while(m.hasNext())
-        for(int i = 0; i < 14; i++){
+        for(int i = 0; i < 19; i++){
             Map[i] = m.next();
         }
     }
     
     public void closeFile(){
          m.close();}
+    
+    
+    public String getMap(int x, int y){
+        String index = Map[y].substring(x,x+1);
+        return index;
+}
+    
+
+    
 }

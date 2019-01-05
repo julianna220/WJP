@@ -39,4 +39,12 @@ public class GamePlayer {
         tileY += dy;
         
     }
+    
+    public void resetMovement (){
+    
+        tileX = 1;
+        tileY = 1;
+        
+        
+    }
 }

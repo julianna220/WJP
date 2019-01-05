@@ -17,6 +17,8 @@ public class GameStatus {
     public int level;
     //czas gry na danym poziomie
     public double time;
+    //czy wybrano poprawną odpowiedx
+    public int levelWon = 0;
     
     //zerowanie parametrów gry
     public void reset(){

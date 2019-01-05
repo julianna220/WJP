@@ -8,8 +8,7 @@ package WJP_GraEdukacyjna;
 import javax.swing.JFrame;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.awt.Cursor;
-import java.awt.Point;
+
 
 /**
  *
@@ -35,13 +34,11 @@ public class GameWindow extends JFrame{
         setLayout(new GridLayout(1,1)); // rozkład 
         GameConst.loadInitialImages(); //
         Toolkit tk = Toolkit.getDefaultToolkit();
-        Cursor tCursor = tk.createCustomCursor(GameConst.cursorImage, new Point(10,10), "Target Cursor");
-        setCursor(tCursor);
         add(new GamePanel(width,height)); //dodanie nowego panelu gry zawierającego akcje
     }
     
     
-    private void animationLoop() {
+    void animationLoop() {
         GameConst.startTime = System.currentTimeMillis(); //pobranie liczby milisekund
         long currTime = GameConst.startTime;
     
