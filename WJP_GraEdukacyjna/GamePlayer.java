@@ -1,50 +1,53 @@
-
 package WJP_GraEdukacyjna;
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
-
+/**
+ * Klasa odpowiedzialna za aktualną pozycje gracza
+ * @author Julianna Wichowska
+ */
 public class GamePlayer {
     
-    private int  tileX, tileY;
+    private int  currX, currY; //aktualne położenie gracza
     
-    private Image player;
-    
+    /**
+     * Metoda zapisująca stan początkowy gracza
+     */
     public GamePlayer (){
-        
-        ImageIcon img = new ImageIcon ("C://Users//Lucek//Documents//NetBeansProjects//Maze//player.png");
-        player = img.getImage();
- 
-        tileX = 1;
-        tileY = 1;
+        currX = 1;
+        currY = 1;
     }
     
-    public Image getPlayer(){
-    return player;
-    }
-
-    
+    /**
+     * Metoda zwracajaca aktualne położenie gracza w płaszczyźnie X
+     * @return aktualne położenie gracza w płaszczyźnie X 
+     */
       public int getTileX(){
-        return tileX;
+        return currX;
     }
     
-      
+    /**
+     * Metoda zwracajaca aktualne położenie gracza w płaszczyźnie Y
+     * @return aktualne położenie gracza w płaszczyźnie Y
+    */
        public int getTileY(){
-        return tileY;
+        return currY;
     }
+       
+    /**
+     * Metoda zmieniająca położenie gracza o wartość dx w płaszczyźnie X
+     * i o wartość dy w płaszczyźnie Y
+     * @param dx wartość o którą zostanie przemieszczony gracz względem osi X
+     * @param dy wartość o którą zostanie przemieszczony gracz względem osi Y
+     */
     public void move(int dx, int dy){
-        
-        
-        tileX += dx;
-        tileY += dy;
-        
+        currX += dx;
+        currY += dy;    
     }
     
+    /**
+     * Metoda resetująca przemieszczenie gracza, ustawiająca jego położenie na stan początkowy 
+     */
     public void resetMovement (){
-    
-        tileX = 1;
-        tileY = 1;
-        
-        
+        currX = 1;
+        currY = 1;   
     }
 }

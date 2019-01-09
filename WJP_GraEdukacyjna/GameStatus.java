@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package WJP_GraEdukacyjna;
 
 /**
- *
- * @author Lucek
+ * Klasa przechowywująca aktualny stan gry
+ * @author Julianna Wichowska
  */
 public class GameStatus {
 
@@ -17,24 +12,24 @@ public class GameStatus {
     public int level;
     //czas gry na danym poziomie
     public double time;
-    //czy wybrano poprawną odpowiedx
+    //czy wybrano poprawną odpowiedź
     public int levelWon = 0;
+    //zaczęcie grę
+    public boolean gameStarted = false;
+    //ukazanie pomiaru czasu
+    public boolean showTime = false;
+    //ukazanie pytania 
+    public boolean showGame = false;
     
-    //zerowanie parametrów gry
+    /**
+    * Metoda serujaca parametry gry
+    */
     public void reset(){
         points=0;
         level=1;
         time=0.0;
-    }
-    
-    //zerowanie punktów
-    public void resetPoints(){
-        points=0;
-    }
-    
-    //zwiększenie poziomu
-    public void nextLevel(){
-        level++;
+        GameConst.startTime=System.currentTimeMillis();
+        GameConst.pause=false;
     }
     
 }

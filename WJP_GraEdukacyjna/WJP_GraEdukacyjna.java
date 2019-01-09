@@ -1,21 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package WJP_GraEdukacyjna;
+
 import java.awt.Toolkit;
 
 /**
- *
- * @author Lucek
+ * Główna klasa projektu
+ * @author Julianna Wichowska
  */
 public class WJP_GraEdukacyjna {
 
 
     public static void main(String[] args) {
        
-        //Ustalenie rozmiaru gry
+        //Ustalenie rozmiaru okna gry
         int gameWidth = 1250;
         int gameHeight = 900;
         

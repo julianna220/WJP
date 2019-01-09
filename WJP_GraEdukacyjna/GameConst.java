@@ -1,37 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package WJP_GraEdukacyjna;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
- *
- * @author Lucek
+ * Klasa zwierająca parametry gry. Odczytuje bądź zapisuje parametry takie jak zasoby graficzne do gry. 
+ * @author Julianna Wichowska
  */
 public class GameConst {
     
-    //dopuszczalny czas gry
-    public static long GAME_TIME=Long.MAX_VALUE;
-    //liczba poziomow gry
-    public final static long NO_LEVELS=3;
-    //obraz tła
+    //obraz tła na poziomie pierwszym
     public static Image Background1;
+    //obraz tła na poziomie drugim
     public static Image Background2;
+    //obraz tła na poziomie trzecim
     public static Image Background3;
-    //obraz menu
-    public static Image menuImage;
-    //obraz ikony kursora
+    //obraz tła na zakończenie gry
+    public static Image Background4;
+    //obraz ikony kursora na poziomie pierwszym
     public static Image cursorImage1;
+     //obraz ikony kursora na poziomie drugim
     public static Image cursorImage2;
+     //obraz ikony kursora na poziomie trzecim
     public static Image cursorImage3;
+    //obraz ikony gracza
+    public static Image player;
+    //obraz kraju na poziomie pierwszym
     public static Image Switzerland;
+    //obraz kraju na poziomie drugim
     public static Image Iceland;
-    public static Image Albania;
-    
+    //obraz kraju na poziomie trzecim
+    public static Image Albania; 
     //zmiana stanu gry
     public static boolean pause=false;
     //zmiana stanu gry, czy wybrano menu
@@ -40,19 +39,27 @@ public class GameConst {
     public static long startTime;
     //czas ukonczenia poziomu
     public static double levelTime;
+    //liczba poziomow gry
+    public final static long NO_LEVELS=3;
     //aktualny poziom gry
-    public static int MoveMODE=1;
+    public static int level=1;
     //ukonczenie gry
     public static boolean end=false;
-    //czy kliknęto opis gry
-    public static boolean instruction = false;
     //rozmiary pola
     public static int gWidth=1280;
     public static int gHeight=1024;
-
+    
+    //Tablica przechowywująca pytania i odpowiedzi dla poziomu pierwszego
     public static String[][] QuestionsSwitzerland = new String[3][4];
+    //Tablica przechowywująca pytania i odpowiedzi dla poziomu drugiego
     public static String[][] QuestionsIceland = new String[3][4];
+    //Tablica przechowywująca pytania i odpowiedzi dla poziomu trzeciego
     public static String[][] QuestionsAlbania = new String[3][4];
+    
+    
+    /**
+     * Metoda ładująca pytania i odpoiwiedzi do tablic odpowiadających danemu poziomowi
+     */
     
     static public void loadTables(){
         
@@ -74,20 +81,20 @@ public class GameConst {
     
     
     
-    QuestionsIceland[0][0] = "Populacja Islandii wynosi prawie tyle samo co liczba ludności";
+    QuestionsIceland[0][0] = "Populacja Islandii wynosi tyle samo co liczba ludności";
     QuestionsIceland[1][0] = "Jak inaczej jest określana Islandia?";
     QuestionsIceland[2][0] = "Ile miast znajduje się w Islandii?";
 
-    QuestionsIceland[0][1] = "Lublin";
-    QuestionsIceland[0][2] = "Gdańsk";
+    QuestionsIceland[0][1] = "Gdańsk";
+    QuestionsIceland[0][2] = "Lublin";
     QuestionsIceland[0][3] = "Wrocław";
   
-    QuestionsIceland[1][1] = "Wyspa lodu i ognia";
-    QuestionsIceland[1][2] = "Wyspa Mrozu";
+    QuestionsIceland[1][1] = "Wyspa mrozu";
+    QuestionsIceland[1][2] = "Wyspa lodu i ognia";
     QuestionsIceland[1][3] = "Samotna Wyspa";
     
-    QuestionsIceland[2][1] = "30";
-    QuestionsIceland[2][2] = "90";
+    QuestionsIceland[2][1] = "90";
+    QuestionsIceland[2][2] = "30";
     QuestionsIceland[2][3] = "150";
     
     
@@ -96,20 +103,26 @@ public class GameConst {
     QuestionsAlbania[1][0] = "Który z podanych krajów nie graniczy z Albanią?";
     QuestionsAlbania[2][0] = "Jaka jest waluta w Albanii?";
 
-    QuestionsAlbania[0][1] = "Podgorica";
-    QuestionsAlbania[0][2] = "Tirana";
+    QuestionsAlbania[0][1] = "Tirana";
+    QuestionsAlbania[0][2] = "Podgornica";
     QuestionsAlbania[0][3] = "Belgrad";
   
-    QuestionsAlbania[1][1] = "Grecja";
-    QuestionsAlbania[1][2] = "Chorwacja";
+    QuestionsAlbania[1][1] = "Chorwacja";
+    QuestionsAlbania[1][2] = "Grecja";
     QuestionsAlbania[1][3] = "Macedonia";
     
-    QuestionsAlbania[2][1] = "Dinar albański";
-    QuestionsAlbania[2][2] = "Lek albański";
+    QuestionsAlbania[2][1] = "Lek albański";
+    QuestionsAlbania[2][2] = "Dinar albański";
     QuestionsAlbania[2][3] = "Kuna";
     
     }
-    //ladowanie zasobow gry
+    
+    /**
+     * 
+     * Metoda ładująca początkowe zasoby gry
+     * 
+     **/
+    
     public static void loadInitialImages(){
         Background1 = loadImage("Images/Background1.jpg");
         Background2 = loadImage("Images/Background2.jpg");
@@ -120,10 +133,16 @@ public class GameConst {
         Switzerland = loadImage("Images//Switzerland_in_Europe.png");
         Iceland = loadImage("Images//Iceland_in_Europe.png");
         Albania = loadImage ("Images//Albania_in_Europe.png");
+        Background4 = loadImage ("Images//Background4.jpg");
+        player = loadImage ("Images//player.png");
     }
     
-
-    
+    /**
+     * Metoda pobierania obiektu klasy Image na podstawie ścieżki
+     * dostępu podanej jako String
+     * @param fileName nazwa pliku
+     * @return zdjęcie
+    */
     public static Image loadImage(String fileName) {
         return new ImageIcon(fileName).getImage();
     }
